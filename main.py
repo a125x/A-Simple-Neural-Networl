@@ -30,7 +30,31 @@ w1 = np.random.random((2, 1))
 b2 = np.random.random((1, 1))
 w2 = np.random.random((2, 1))
 
-alpha = 0.001
+alpha = 0.01
+
+list_err = []
+
+#test
+
+print('Before learning:')
+print()
+
+for i in range(1):
+    input = np.random.random((1, 1))
+    y = 2 * abs(3 * input + 3) + 2
+
+    t1 = w1 @ input + b1
+    h1 = relu(t1)
+    output = w2.T @ h1 + b2
+
+    E = (output - y) ** 2
+
+    print('Neural network output: ' + str(output))
+    print('Correct output: ' + str(y))
+    print('Error: ' + str(E))
+
+print()
+print()
 
 for i in range(100000):
 
@@ -59,16 +83,28 @@ for i in range(100000):
     w1 = w1 - dE_dw1 * alpha
     b1 = b1 - dE_db1 * alpha
 
+    #add error
+    list_err.append(E[0][0])
+
 #test
-input = np.random.random((1, 1))
-y = 2 * abs(3 * input + 3) + 2
 
-t1 = w1 @ input + b1
-h1 = relu(t1)
-output = w2.T @ h1 + b2
+print('After learning:')
+print()
 
-E = (output - y) ** 2
+for i in range(1):
+    input = np.random.random((1, 1))
+    y = 2 * abs(3 * input + 3) + 2
 
-print(output)
-print(y)
-print(E)
+    t1 = w1 @ input + b1
+    h1 = relu(t1)
+    output = w2.T @ h1 + b2
+
+    E = (output - y) ** 2
+
+    print('Neural network output: ' + str(output))
+    print('Correct output: ' + str(y))
+    print('Error: ' + str(E))
+
+import matplotlib.pyplot as plt
+plt.plot(list_err)
+plt.show()
