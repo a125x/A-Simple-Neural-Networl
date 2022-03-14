@@ -6,12 +6,12 @@
 #    We will use this structure:
 #
 #
-#                ReLU
-#            t1 ------> h1
+#                 ReLU
+#            t10 -----> h10
 #           / /           \
 #      W1  / /         W2  \
-#         / /    ReLU       \
-#    input - t2 ------> h2 - output
+#         / /     ReLU      \
+#    input - t11 ---------> h11 - output
 #         / /               /
 #         B1               B2
 #
